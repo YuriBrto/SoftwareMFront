@@ -1,0 +1,28 @@
+<app-default-login-page
+    title="ADM Zone"
+    primaryBtnText="Entrar como Administrador"
+    secondaryBtnText="Voltar para login de Professor"
+    (submit)="submit()"
+    (navigate)="navigate()"
+    [disablePrimaryBtn]="!loginForm.valid"
+>
+    <form [formGroup]="loginForm">
+        <app-primary-input
+            formControlName="email"
+            inputName="email"
+            type="email"
+            label="Email"
+            placeholder="admin@empresa.com"
+        >
+            <img src="/assets/svg/email-icon.svg"/>
+        </app-primary-input>
+        <app-primary-input
+            formControlName="password"
+            inputName="password"
+            type="password"
+            label="Senha"
+        >
+            <img src="/assets/svg/password-icon.svg"/>
+        </app-primary-input>
+    </form>
+</app-default-login-page>

@@ -11,13 +11,13 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class DefaultLoginPageComponent {
   @Input() title: string = "";
-  @Input() primaryBtnText: string = "Login Up";
-  @Input() secondaryBtnText: string = "Sign Up";
+  @Input() primaryBtnText: string = "Entrar como professor";
+  @Input() secondaryBtnText: string = "Entrar como administrador";
   @Input() disablePrimaryBtn: boolean = true;
 
   @Output("submit") onSubmit = new EventEmitter();
 
-  
+
   @Output("navigate") onNavigate = new EventEmitter();
 
   submit() {

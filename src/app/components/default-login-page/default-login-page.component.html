@@ -1,12 +1,13 @@
 <main>
     <section class="form-section">
-<img src="/assets/svg/logo.svg" >
-<h2>{{title}}</h2>
+<div class="title-container"><img src="/assets/png/desenvolvimento-de-software.png" class="logo">
+  <h2>{{title}}</h2></div>
+
 <ng-content></ng-content>
 <div class="btn-wrapper">
 
 
-<button 
+<button
 class="btn-primary"
  (click)="submit()"
  [disabled]="disablePrimaryBtn">{{primaryBtnText}}</button>
@@ -20,7 +21,7 @@ class="btn-primary"
 </div>
     </section>
     <section class="main-section">
-        <h1>You Should, MoveIt !</h1>
-        <img src="/assets/svg/main-illustration.svg">
+        <h1>Sistema de instalação de software !</h1>
+        <img src="/assets/png/instrutor.png">
     </section>
 </main>

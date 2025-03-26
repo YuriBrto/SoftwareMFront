@@ -1,4 +1,6 @@
 @import "../../../styles/variables.scss";
+$blue-primary: #007bff; // Tom de azul principal
+$blue-secondary: #0056b3; // Azul mais escuro para hover
 main{
     display: flex;
     flex-direction: row;
@@ -13,14 +15,26 @@ section{
     align-items: center;
     justify-content: center;
 }
+.title-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .logo {
+    width: 50px; // Tamanho fixo da logo (ajuste conforme necessário)
+    height: auto; // Mantém a proporção
+    object-fit: contain; // Garante que a imagem não fique distorcida
+  }
+}
+
 .main-section{
- 
+
     gap: 8px;
 
 
     flex-grow: 1;
 background-color: $gray-bg;
-   
+
 }
 .form-section{
    flex-grow: 0.3;
@@ -64,9 +78,9 @@ text-transform: uppercase;
     width: 100%;
     border-radius: 8px;
     font-size: 16px;
-font-weight: 500;  
+font-weight: 500;
 border: none;
-background: transparent; 
+background: transparent;
 padding: 12px 24px;
 cursor: pointer;
 
@@ -74,14 +88,29 @@ cursor: pointer;
     opacity: 0.8;
 }
 &.btn-primary{
-    background-color: $primary-color;
+    background-color: $blue-primary;
     color: white;
-    box-shadow: 0px 8px 12px 0px #9440FF33;
+    box-shadow: 0px 8px 12px 0px rgba(64, 179, 255, 0.2);
+    transition: background 0.3s ease;
 
+    &:hover {
+      background-color: $blue-secondary;
+    }
 }
 &.btn-secundary{
-    border: 1px solid $primary-color;
-    color:$primary-color;
+  border: 1px solid $blue-primary;
+  color: $blue-primary;
+  transition: color 0.3s ease, border 0.3s ease;
+
+  &:hover {
+    border: 1px solid $blue-primary;
+    color: $blue-primary;
+    transition: color 0.3s ease, border 0.3s ease;
+
+    &:hover {
+      background-color: $blue-primary;
+      color: white;
+    }
+  }
 }
-}
-}
+   }}
