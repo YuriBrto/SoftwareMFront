@@ -1,11 +1,11 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { LoginComponent } from '../../pages/login/login.component';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-default-login-page',
   standalone: true,
-  imports: [ReactiveFormsModule ],
+  imports: [ReactiveFormsModule],
   templateUrl: './default-login-page.component.html',
   styleUrl: './default-login-page.component.scss'
 })
@@ -15,18 +15,21 @@ export class DefaultLoginPageComponent {
   @Input() secondaryBtnText: string = "Entrar como administrador";
   @Input() disablePrimaryBtn: boolean = true;
 
-  @Output("submit") onSubmit = new EventEmitter();
-
-
+  @Output("submit") Submit = new EventEmitter();
   @Output("navigate") onNavigate = new EventEmitter();
 
+  constructor(private router: Router) {} // 🔴 Adiciona o Router ao construtor
+  ngOnInit() {
+    console.log("🔵 Estado do botão:", this.disablePrimaryBtn);
+  }
   submit() {
-   // Obtem os dados do formulário
-    this.onSubmit.emit(); // Envia os dados para o componente pai
+    console.log("🔵 submit() chamado dentro do DefaultLoginPageComponent!");
+    this.Submit.emit(null); // Envia os dados para o componente pai
   }
 
- navigate() {
-    // Obtem os dados do formulário
-     this.onNavigate.emit(); // Envia os dados para o componente pai
-   }
+  navigate() {
+    console.log("🟢 Botão de login clicado!");
+    this.router.navigate(['/admin-login']); // ✅ Agora o Router funciona corretamente
+    this.onNavigate.emit(); // Envia os dados para o componente pai
+  }
 }
