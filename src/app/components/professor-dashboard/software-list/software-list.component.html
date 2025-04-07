@@ -1,0 +1,13 @@
+<div class="software-list">
+  <h2>Softwares Disponíveis</h2>
+  <ul>
+    <li *ngFor="let software of softwareList" @fadeIn>
+      <strong>{{ software.nome }}</strong> - v{{ software.versao }} ({{ software.tipo }})
+      <p>{{ software.descricao }}</p>
+
+      <button (click)="onSelect(software)">
+        Selecionar
+      </button>
+    </li>
+  </ul>
+</div>

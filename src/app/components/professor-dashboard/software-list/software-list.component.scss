@@ -1,0 +1,47 @@
+.software-list {
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      background: #ebebeb;
+      padding: 1rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      strong {
+        font-size: 1.1rem;
+      }
+
+      p {
+        margin: 0;
+        color: #555;
+      }
+
+      button {
+        align-self: flex-end;
+        background-color: #3182ce;
+        color: white;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: #2563eb;
+        }
+      }
+    }
+  }
+}
