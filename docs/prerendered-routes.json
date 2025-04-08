@@ -1,6 +1,8 @@
 {
   "routes": [
+    "/admin-dashboard",
+    "/admin-login",
     "/login",
-    "/signup"
+    "/professor-dashboard"
   ]
 }
