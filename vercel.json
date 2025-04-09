@@ -11,5 +11,5 @@
       "dest": "/index.html"
     }
   ],
-  "outputDirectory": "docs/browser"
+  "outputDirectory": "dist/SoftwareMFront-1/browser"
 }
