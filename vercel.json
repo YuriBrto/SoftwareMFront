@@ -11,5 +11,5 @@
       "dest": "/index.html"
     }
   ],
-  "outputDirectory": "docs"
+  "outputDirectory": "docs/browser"
 }
