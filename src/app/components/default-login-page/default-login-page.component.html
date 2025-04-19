@@ -1,28 +1,30 @@
 <main>
     <section class="form-section">
-<div class="title-container"><img src="/assets/png/desenvolvimento-de-software.png" class="logo">
-  <h2>{{title}}</h2></div>
-
-<ng-content></ng-content>
-<div class="btn-wrapper">
-
-
-<button
-class="btn-primary"
-
- (click)="submit()"
- [disabled]="disablePrimaryBtn">{{primaryBtnText}}</button>
-<div class="dividir">
-    <div></div>
-<span>or</span>
-<div></div>
-</div>
-
-<button class="btn-secundary"  (click)="navigate()">{{secondaryBtnText}}</button>
-</div>
+      <div class="title-container">
+        <img src="/assets/png/desenvolvimento-de-software.png" class="logo">
+        <h2>{{title}}</h2>
+      </div>
+  
+      <ng-content></ng-content>
+  
+      <div class="btn-wrapper">
+        <button class="btn-primary" (click)="submit()" [disabled]="disablePrimaryBtn">
+          {{primaryBtnText}}
+        </button>
+        <div class="dividir">
+          <div></div>
+          <span>or</span>
+          <div></div>
+        </div>
+        <button class="btn-secundary" (click)="navigate()">
+          {{secondaryBtnText}}
+        </button>
+      </div>
     </section>
+  
     <section class="main-section">
-        <h1>Sistema de instalação de software !</h1>
-        <img src="/assets/png/instrutor.png">
+      <h1>Sistema de instalação de software!</h1>
+      <img src="/assets/png/instrutor.png">
     </section>
-</main>
+  </main>
+  

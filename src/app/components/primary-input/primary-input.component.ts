@@ -30,7 +30,6 @@ export class PrimaryInputComponent implements ControlValueAccessor {
 
   ngOnInit() {
     this.control.valueChanges.subscribe(value => {
-      console.log(`🟢 Input alterado (${this.placeholder}):`, value);
       this.onChange(value);
     });
   }
@@ -48,10 +47,6 @@ export class PrimaryInputComponent implements ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-    if (isDisabled) {
-      this.control.disable();
-    } else {
-      this.control.enable();
-    }
+    isDisabled ? this.control.disable() : this.control.enable();
   }
 }

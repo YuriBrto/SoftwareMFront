@@ -3,7 +3,8 @@ import { SoftwareListComponent } from './software-list/software-list.component';
 import { InstallationFormComponent } from './installation-form/installation-form.component';
 import { RequestNewSoftwareComponent } from './request-new-software/request-new-software.component';
 import { CommonModule } from '@angular/common';
-
+import { AuthService} from '../../services/authservice.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-professor-dashboard',
   standalone: true,
@@ -21,6 +22,7 @@ export class ProfessorDashboardComponent {
   showNewSoftwareForm = false;
   toastMessage: string = '';
   showToast: boolean = false;
+  constructor(private authService: AuthService, private router: Router) {}
 
   handleSelect(software: any) {
     if (!this.selectedSoftwares.includes(software)) {
@@ -46,4 +48,8 @@ export class ProfessorDashboardComponent {
     this.showNewSoftwareForm = false;
   }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
+  }
 }

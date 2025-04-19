@@ -1,11 +1,10 @@
 <app-default-login-page
-  title="Instalação de Software"
-  primaryBtnText="Entrar como professor"
-  SecundaryBtnText="Entrar como administrador"
-  [disablePrimaryBtn]="!loginForm.valid"
-  (submit)="submit('professor', $event)"
-  (secondarySubmit)="submit('admin', $event)"
->
+  [title]="'Login'"
+  [primaryBtnText]="'Entrar como professor'"
+  [secondaryBtnText]="'Entrar como administrador'"
+
+  (submit)="submit('professor')">
+  
   <form [formGroup]="loginForm">
     <app-primary-input
       formControlName="email"
