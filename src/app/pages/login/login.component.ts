@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-import { DefaultLoginPageComponent } from '../../components/default-login-page/default-login-page.component';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators, NonNullableFormBuilder } from '@angular/forms';
-import { PrimaryInputComponent } from '../../components/primary-input/primary-input.component';
 import { Router } from '@angular/router';
-import { LoginService } from '../../services/login.service';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../services/auth.service'; // Substituído pelo AuthService
+import { DefaultLoginPageComponent } from '../../components/default-login-page/default-login-page.component';
+import { PrimaryInputComponent } from '../../components/primary-input/primary-input.component';
 
 interface LoginForm {
-  email: FormControl<string>;
+  username: FormControl<string>;
   password: FormControl<string>;
 }
 
@@ -20,7 +20,7 @@ interface LoginForm {
     PrimaryInputComponent
   ],
   providers: [
-    LoginService
+    AuthService
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
@@ -30,12 +30,12 @@ export class LoginComponent {
 
   constructor(
     private router: Router,
-    private loginService: LoginService,
+    private authService: AuthService,
     private toastService: ToastrService,
     private fb: NonNullableFormBuilder
   ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required]],  // Alterado para username
       password: ['', Validators.required]
     });
   }
@@ -58,9 +58,12 @@ export class LoginComponent {
       return;
     }
 
-    const { email, password } = this.loginForm.value;
+    const { username, password } = this.loginForm.value;
 
-    this.loginService.login(email as string, password as string).subscribe({
+    this.authService.login({
+      username: username as string,
+      password: password as string
+    }).subscribe({
       next: (response) => {
         console.log("✅ Resposta da API:", response);
 
@@ -87,4 +90,3 @@ export class LoginComponent {
     });
   }
 }
-

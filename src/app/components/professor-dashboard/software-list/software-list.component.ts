@@ -1,18 +1,16 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+// software-list.component.ts
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-  trigger,
-  transition,
-  style,
-  animate
-} from '@angular/animations';
+import { trigger, transition, style, animate } from '@angular/animations';
+import { SoftwareService } from '../../../services/software.service'; // Importando o serviço
+import { Software } from '../../../models/software.model';  // Importando o modelo
 
 @Component({
   selector: 'app-software-list',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './software-list.component.html',
-  styleUrl: './software-list.component.scss',
+  styleUrls: ['./software-list.component.scss'],
   animations: [
     trigger('fadeIn', [
       transition(':enter', [
@@ -22,18 +20,28 @@ import {
     ])
   ]
 })
-export class SoftwareListComponent {
-  @Output() selectSoftware = new EventEmitter<any>(); // ✅ Aqui está o Output correto
+export class SoftwareListComponent implements OnInit {
+  @Output() selectSoftware = new EventEmitter<Software>();  // Agora usamos o modelo Software
+  softwareList: Software[] = [];
 
-  softwareList = [
-    { nome: 'Google Chrome', versao: '122.0', tipo: 'Livre', descricao: 'Navegador web rápido e seguro' },
-    { nome: 'Visual Studio Code', versao: '1.86.2', tipo: 'Livre', descricao: 'Editor de código para desenvolvimento' },
-    { nome: 'Photoshop', versao: '2024', tipo: 'Proprietário', descricao: 'Editor de imagens profissional' },
-    { nome: 'LibreOffice', versao: '7.6', tipo: 'Livre', descricao: 'Suite de escritório open-source' },
-    { nome: 'AutoCAD', versao: '2023', tipo: 'Proprietário', descricao: 'Software de desenho técnico e CAD' }
-  ];
+  constructor(private softwareService: SoftwareService) {}
 
-  onSelect(software: any) {
-    this.selectSoftware.emit(software); // ✅ Usa o Output para emitir
+  ngOnInit() {
+    this.loadSoftwares();
+  }
+
+  loadSoftwares() {
+    this.softwareService.getSoftwares().subscribe({
+      next: (data) => {
+        this.softwareList = data;  // Atribuindo os dados recebidos da API
+      },
+      error: (err) => {
+        console.error('Erro ao carregar os softwares', err);
+      }
+    });
+  }
+
+  onSelect(software: Software) {
+    this.selectSoftware.emit(software);  // Emitindo o software selecionado
   }
 }
