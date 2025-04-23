@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { SoftwareListComponent } from './software-list/software-list.component';
-import { InstallationFormComponent } from './installation-form/installation-form.component';
-import { RequestNewSoftwareComponent } from './request-new-software/request-new-software.component';
 import { CommonModule } from '@angular/common';
+import { SoftwareListComponent } from './software-list/software-list.component';
+import { RequestNewSoftwareComponent } from './request-new-software/request-new-software.component';
+import { SolicitacaoComponent } from './solicitacao/solicitacao.component'; // ajuste o caminho se necessário
 
 @Component({
   selector: 'app-professor-dashboard',
@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     SoftwareListComponent,
-    InstallationFormComponent,
+    SolicitacaoComponent,
     RequestNewSoftwareComponent
   ],
   templateUrl: './professor-dashboard.component.html',
@@ -28,22 +28,18 @@ export class ProfessorDashboardComponent {
       this.showToastMessage(`${software.nome} selecionado com sucesso!`);
     }
   }
+
   showToastMessage(message: string) {
     this.toastMessage = message;
     this.showToast = true;
 
     setTimeout(() => {
       this.showToast = false;
-    }, 3000); // Toast desaparece após 3 segundos
-  }
-  handleInstallation(data: any) {
-    console.log('✅ Instalação concluída com os dados:', data);
-    this.selectedSoftwares = [];
+    }, 3000);
   }
 
   handleNewSoftwareRequest(requestData: any) {
     console.log('📩 Nova solicitação de software:', requestData);
     this.showNewSoftwareForm = false;
   }
-
 }

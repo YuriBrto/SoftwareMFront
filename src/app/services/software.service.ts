@@ -13,6 +13,11 @@ export class SoftwareService {
 
   constructor(private http: HttpClient) { }
 
+  getAll(): Observable<Software[]> {
+    return this.http.get<Software[]>(this.apiUrl);
+  }
+
+
   // Método para buscar todos os softwares
   getSoftwares(): Observable<Software[]> {
     return this.http.get<Software[]>(this.apiUrl);

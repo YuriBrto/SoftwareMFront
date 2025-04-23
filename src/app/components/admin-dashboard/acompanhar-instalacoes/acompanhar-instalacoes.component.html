@@ -1,1 +1,24 @@
-<p>acompanhar-instalacoes works!</p>
+<h1 class="text-2xl font-bold mb-6">Acompanhar Instalações</h1>
+
+<div *ngFor="let solicitacao of solicitacoes" class="border p-4 rounded mb-4 shadow">
+  <h2 class="font-semibold">Laboratório: {{ solicitacao.lab.nome }}</h2>
+  <p><strong>Professor:</strong> {{ solicitacao.professor.nome }}</p>
+  <p><strong>Status da Instalação:</strong> {{ solicitacao.statusInstalacao }}</p>
+  <p><strong>Aprovada:</strong> {{ solicitacao.aprovada ? 'Sim' : 'Não' }}</p>
+  
+  <div>
+    <strong>Softwares Solicitados:</strong>
+    <ul class="list-disc ml-6">
+      <li *ngFor="let software of solicitacao.softwaresSolicitados">{{ software.nome }}</li>
+    </ul>
+  </div>
+
+  <div class="mt-4">
+    <label class="block mb-1">Atualizar Status:</label>
+    <select [(ngModel)]="solicitacao.statusInstalacao" (change)="atualizarStatus(solicitacao)" class="border rounded p-2">
+      <option value="INICIADA">INICIADA</option>
+      <option value="EM_ANDAMENTO">EM_ANDAMENTO</option>
+      <option value="FINALIZADA">FINALIZADA</option>
+    </select>
+  </div>
+</div>

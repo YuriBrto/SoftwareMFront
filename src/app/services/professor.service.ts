@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Professor } from '../models/professor.model';
-
+import { Software } from '../models/software.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +12,9 @@ export class ProfessorService {
 
   constructor(private http: HttpClient) { }
 
+  getAll(): Observable<Software[]> {
+    return this.http.get<Software[]>(this.apiUrl);
+  }
   getProfessores(): Observable<Professor[]> {
     return this.http.get<Professor[]>(this.apiUrl);
   }

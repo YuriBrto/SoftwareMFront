@@ -1,0 +1,27 @@
+<h1 class="text-2xl font-bold mb-6">Solicitação de Instalação</h1>
+
+<form (ngSubmit)="onSubmit()" class="grid gap-4 max-w-md mx-auto">
+  <div>
+    <label class="block mb-1 font-medium">Laboratório</label>
+    <select [(ngModel)]="selectedLabId" name="lab" class="w-full border rounded p-2" required>
+      <option *ngFor="let lab of labs" [value]="lab.id">{{ lab.nome }}</option>
+    </select>
+  </div>
+
+  <div>
+    <label class="block mb-1 font-medium">Softwares</label>
+    <div *ngFor="let software of softwares">
+      <input
+        type="checkbox"
+        [(ngModel)]="software.selected"
+        name="softwares"
+        [value]="software.id"
+      />
+      {{ software.nome }}
+    </div>
+  </div>
+
+  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+    Enviar Solicitação
+  </button>
+</form>
