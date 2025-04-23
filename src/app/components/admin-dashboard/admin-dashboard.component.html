@@ -1,1 +1,21 @@
-<p>admin-dashboard works!</p>
+<h1 class="text-2xl font-bold mb-6">Painel do Administrador</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <!-- Card 1: Cadastrar Professor -->
+  <a class="bg-white shadow rounded-2xl p-6 hover:shadow-lg transition cursor-pointer block" routerLink="/cadastrar">
+    <h2 class="text-xl font-semibold mb-2">Cadastrar Professor</h2>
+    <p class="text-gray-600">Adicione novos professores ao sistema.</p>
+  </a>
+
+  <!-- Card 2: Acompanhar Solicitações -->
+  <a class="bg-white shadow rounded-2xl p-6 hover:shadow-lg transition cursor-pointer block" routerLink="/acompanharSolicitacao">
+    <h2 class="text-xl font-semibold mb-2">Acompanhar Solicitações</h2>
+    <p class="text-gray-600">Visualize as solicitações de software realizadas.</p>
+  </a>
+
+  <!-- Card 3: Acompanhar Instalações -->
+  <a class="bg-white shadow rounded-2xl p-6 hover:shadow-lg transition cursor-pointer block" routerLink="/acompanharInstalacao">
+    <h2 class="text-xl font-semibold mb-2">Acompanhar Instalações</h2>
+    <p class="text-gray-600">Monitore o status das instalações em andamento.</p>
+  </a>
+</div>

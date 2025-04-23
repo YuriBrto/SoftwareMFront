@@ -1,59 +1,114 @@
-.professor-dashboard {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+/* Styles for Professor Dashboard */
+:host {
+  display: block;
   padding: 2rem;
-  background: linear-gradient(135deg, #a39595, #1114a1);
-
-
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    text-align: center; // <- aqui está a correção
-    color:#f9f9f9;
-  }
-
-  .actions {
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .new-software-form {
-    padding: 1.5rem;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    background-color: #f9f9f9;
-  }
+  background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradiente de fundo moderno */
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif; /* Fonte moderna */
 }
 
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 2rem;
+}
 
-/*toast*/
+/* Section container styles */
+section {
+  margin-bottom: 2rem;
+}
+
+/* Styling for the list component */
+app-software-list {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+app-software-list:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Information installation form styling */
+app-installation-form, app-request-new-software {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+app-installation-form:hover,
+app-request-new-software:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Button to show the software request form */
+button {
+  background-color: transparent;
+  color: #2575fc;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  text-decoration: underline;
+}
+
+button:hover {
+  color: #6a11cb;
+}
+
+/* Toast notification styles */
 .toast {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background-color: #38a169; // verde tipo "sucesso"
-  color: white;
-  padding: 1rem 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  font-weight: bold;
-  z-index: 9999;
-  animation: fadeInOut 3s ease-in-out;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  animation: toastAnimation 3s forwards;
 }
 
-@keyframes fadeInOut {
+@keyframes toastAnimation {
   0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateX(-50%) translateY(20px);
   }
-  10%, 90% {
+  50% {
     opacity: 1;
-    transform: translateY(0);
   }
   100% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateX(-50%) translateY(20px);
   }
 }
 
+/* Responsive design */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  section {
+    margin-bottom: 1.5rem;
+  }
+
+  app-software-list, app-installation-form, app-request-new-software {
+    padding: 1.5rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+  }
+}

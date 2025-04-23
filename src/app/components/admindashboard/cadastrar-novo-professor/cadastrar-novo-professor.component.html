@@ -1,0 +1,36 @@
+<h1 class="text-2xl font-bold mb-6">Cadastrar Novo Professor</h1>
+
+<form (ngSubmit)="cadastrarProfessor()" #form="ngForm" class="grid gap-4 max-w-md mx-auto">
+  <div>
+    <label class="block mb-1 font-medium">Nome</label>
+    <input type="text" [(ngModel)]="professor.nome" name="nome" class="w-full border rounded p-2" required />
+  </div>
+
+  <div>
+    <label class="block mb-1 font-medium">Escola</label>
+    <input type="text" [(ngModel)]="professor.escola" name="escola" class="w-full border rounded p-2" required />
+  </div>
+
+
+  <div class="relative">
+    <label class="block mb-1 font-medium">Senha</label>
+    <input
+      [type]="senhaVisivel ? 'text' : 'password'"
+      [(ngModel)]="professor.senha"
+      name="senha"
+      class="w-full border rounded p-2"
+      required
+    />
+    <button
+      type="button"
+      (click)="toggleSenhaVisivel()"
+      class="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500"
+    >
+      <i [ngClass]="senhaVisivel ? 'fa fa-eye-slash' : 'fa fa-eye'"></i> <!-- Ícone do olho -->
+    </button>
+  </div>
+
+  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+    Cadastrar
+  </button>
+</form>

@@ -1,0 +1,88 @@
+/* Styles for Admin Dashboard */
+:host {
+  display: block;
+  padding: 2rem;
+  background: linear-gradient(to right, #4facfe, #00f2fe); /* Gradiente de fundo moderno */
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif; /* Fonte moderna */
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+}
+
+a {
+  display: block;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #777;
+  }
+}
+
+/* Card effect */
+a:hover h2 {
+  color: #4facfe;
+}
+
+a:active {
+  transform: translateY(-5px);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .grid {
+    grid-template-columns: 1fr; /* Para dispositivos menores, usar uma coluna */
+  }
+}
+
+/* Background effect */
+:host {
+  background: linear-gradient(45deg, #00bcd4, #ff9800);
+  background-size: 400% 400%;
+  animation: gradientAnimation 5s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
