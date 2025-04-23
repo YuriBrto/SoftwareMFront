@@ -3,12 +3,14 @@ import { SolicitacaoService } from '../../../services/solicitacao.service';
 import { Solicitacao } from '../../../models/solicitacao.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Solicitation } from '../../../models/solicitacao.model';
+
 @Component({
   selector: 'app-acompanhar-instalacoes',
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './acompanhar-instalacoes.component.html',
-  styleUrl: './acompanhar-instalacoes.component.scss'
+  styleUrls: ['./acompanhar-instalacoes.component.scss']
 })
 export class AcompanharInstalacaoComponent implements OnInit {
   solicitacoes: Solicitacao[] = [];
@@ -19,17 +21,23 @@ export class AcompanharInstalacaoComponent implements OnInit {
     this.loadSolicitacoes();
   }
 
+  // Carregar as solicitações de instalação
   loadSolicitacoes(): void {
-    this.solicitacaoService.getAll().subscribe((data) => {
-      this.solicitacoes = data;
+    this.solicitacaoService.getSolicitacoesAdmin().subscribe({
+      next: (data) => {
+        this.solicitacoes = data;
+      },
+      error: (err) => console.error('Erro ao buscar solicitações:', err)
     });
   }
-
+  
+  // Atualizar o status da solicitação
   atualizarStatus(solicitacao: Solicitacao): void {
-    this.solicitacaoService
-      .updateStatus(solicitacao.id!, solicitacao.statusInstalacao)
-      .subscribe((res) => {
-        console.log('Status atualizado:', res);
-      });
+    // Aqui o status pode ser "Em andamento", "Concluído", "Pendente", etc.
+    this.solicitacaoService.updateSolicitationStatus(solicitacao.id!, solicitacao.status).subscribe((res) => {
+      console.log('Status atualizado:', res);
+      // Após a atualização, recarrega as solicitações
+      this.loadSolicitacoes();
+    });
   }
 }

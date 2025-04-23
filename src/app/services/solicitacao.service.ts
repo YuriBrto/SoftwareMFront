@@ -1,23 +1,33 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Solicitacao, SolicitacaoDTO } from '../models/solicitacao.model';
+import { SolicitacaoDTO, Solicitation } from '../models/solicitacao.model';
 
 @Injectable({ providedIn: 'root' })
 export class SolicitacaoService {
-  private apiUrl = 'http://localhost:8081/api/solicitacao';
+  private apiUrl = 'http://localhost:8081/api/solicitacoes';
 
   constructor(private http: HttpClient) {}
 
-  create(dto: SolicitacaoDTO): Observable<Solicitacao> {
-    return this.http.post<Solicitacao>(this.apiUrl, dto);
+  createSolicitation(dto: SolicitacaoDTO): Observable<Solicitation> {
+    // Aqui mapeamos o DTO para o modelo completo
+    const solicitation: Solicitation = {
+      professorName: dto.professorName,
+      softwareName: dto.softwareName,
+      statusInstalacao: dto.statusInstalacao,
+      labId: dto.labId,
+      softwaresIds: dto.softwaresIds
+    };
+
+    return this.http.post<Solicitation>(this.apiUrl, solicitation);
   }
 
-  getAll(): Observable<Solicitacao[]> {
-    return this.http.get<Solicitacao[]>(this.apiUrl);
+  getSolicitations(): Observable<Solicitation[]> {
+    return this.http.get<Solicitation[]>(this.apiUrl);
   }
 
-  updateStatus(id: number, status: string): Observable<Solicitacao> {
-    return this.http.put<Solicitacao>(`${this.apiUrl}/${id}/status?status=${status}`, {});
+  updateSolicitationStatus(id: number, status: string): Observable<Solicitation> {
+    return this.http.put<Solicitation>(`${this.apiUrl}/${id}?status=${status}`, {});
   }
+  
 }

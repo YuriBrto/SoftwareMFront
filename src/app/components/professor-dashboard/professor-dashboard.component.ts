@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { SoftwareListComponent } from './software-list/software-list.component';
 import { RequestNewSoftwareComponent } from './request-new-software/request-new-software.component';
 import { SolicitacaoComponent } from './solicitacao/solicitacao.component'; // ajuste o caminho se necessário
-
+import { LabService } from '../../services/lab.service';
+import { Lab } from '../../models/solicitacao.model';
 @Component({
   selector: 'app-professor-dashboard',
   standalone: true,
@@ -21,6 +22,9 @@ export class ProfessorDashboardComponent {
   showNewSoftwareForm = false;
   toastMessage: string = '';
   showToast: boolean = false;
+ 
+
+
 
   handleSelect(software: any) {
     if (!this.selectedSoftwares.includes(software)) {

@@ -14,16 +14,27 @@ export interface Solicitacao {
   }
   
   export interface SolicitacaoDTO {
-    softwaresIds: number[];
-    professorId: number;
     labId: number;
+    softwaresIds: number[];
+    professorName: string ;
+    softwareName: string;
+    statusInstalacao: string;
   }
+  
   // interfaces/lab.ts
 export interface Lab {
     id: number;
     nome: string;
     status: boolean;
     softwares: { id: number, nome: string }[];  // Softwares relacionados
+  }
+  
+  export interface Solicitation {
+    labId: number;
+    softwaresIds: number[]; // Softwares selecionados
+    professorName: string;
+    softwareName: string;
+    statusInstalacao: string; // "Pendente", "Aprovado", "Instalado"
   }
   
   

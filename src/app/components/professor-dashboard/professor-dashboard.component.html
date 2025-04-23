@@ -10,20 +10,4 @@
     <app-solicitacao></app-solicitacao>
   </section>
 
-  <button
-    class="text-blue-600 underline mb-4"
-    (click)="showNewSoftwareForm = true"
-    *ngIf="!showNewSoftwareForm">
-    Não encontrei o software desejado
-  </button>
-
-  <section *ngIf="showNewSoftwareForm">
-    <h2 class="text-lg font-semibold mb-2">Solicitar Novo Software</h2>
-    <app-request-new-software (submitRequest)="handleNewSoftwareRequest($event)">
-    </app-request-new-software>
-  </section>
-</div>
-
-<div *ngIf="showToast" class="toast animate-fade-in">
-  {{ toastMessage }}
-</div>
+ 

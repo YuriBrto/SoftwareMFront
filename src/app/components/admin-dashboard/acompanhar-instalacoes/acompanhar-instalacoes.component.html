@@ -1,24 +1,34 @@
 <h1 class="text-2xl font-bold mb-6">Acompanhar Instalações</h1>
 
-<div *ngFor="let solicitacao of solicitacoes" class="border p-4 rounded mb-4 shadow">
-  <h2 class="font-semibold">Laboratório: {{ solicitacao.lab.nome }}</h2>
-  <p><strong>Professor:</strong> {{ solicitacao.professor.nome }}</p>
-  <p><strong>Status da Instalação:</strong> {{ solicitacao.statusInstalacao }}</p>
-  <p><strong>Aprovada:</strong> {{ solicitacao.aprovada ? 'Sim' : 'Não' }}</p>
-  
-  <div>
-    <strong>Softwares Solicitados:</strong>
-    <ul class="list-disc ml-6">
-      <li *ngFor="let software of solicitacao.softwaresSolicitados">{{ software.nome }}</li>
-    </ul>
-  </div>
-
-  <div class="mt-4">
-    <label class="block mb-1">Atualizar Status:</label>
-    <select [(ngModel)]="solicitacao.statusInstalacao" (change)="atualizarStatus(solicitacao)" class="border rounded p-2">
-      <option value="INICIADA">INICIADA</option>
-      <option value="EM_ANDAMENTO">EM_ANDAMENTO</option>
-      <option value="FINALIZADA">FINALIZADA</option>
-    </select>
-  </div>
-</div>
+<table class="table-auto w-full">
+  <thead>
+    <tr>
+      <th>Nome do Professor</th>
+      <th>Laboratório</th>
+      <th>Softwares</th>
+      <th>Status</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let solicitacao of solicitacoes">
+      <td>{{ solicitacao.professorName }}</td>
+      <td>{{ solicitacao.labName }}</td>
+      <td>
+        <ul>
+          <li *ngFor="let software of solicitacao.softwares">{{ software.name }}</li>
+        </ul>
+      </td>
+      <td>
+        <select [(ngModel)]="solicitacao.status">
+          <option value="Pendente">Pendente</option>
+          <option value="Em andamento">Em andamento</option>
+          <option value="Concluído">Concluído</option>
+        </select>
+      </td>
+      <td>
+        <button (click)="atualizarStatus(solicitacao)">Atualizar Status</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
