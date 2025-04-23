@@ -22,4 +22,8 @@ export class SoftwareService {
   getSoftwareById(id: number): Observable<Software> {
     return this.http.get<Software>(`${this.apiUrl}/${id}`);
   }
+
+  createSoftware(software: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, software);
+  }
 }

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { Software } from '../../../models/software.model';
+import { SoftwareService } from '../../../services/software.service';
 interface Type {
   id: number;
   nome: string;
@@ -33,11 +34,17 @@ export class CadastrarNovoProfessorComponent implements OnInit {
     senha: ''
   };
 
+    software = {
+      nome: '',
+      versao: '',
+      link: '',
+      softwareLivre: false,
+    };
 
   tipos: Type[] = [];
   senhaVisivel = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private softwareService: SoftwareService) {}
 
   ngOnInit() {
     // Se quiser, aqui pode carregar os tipos do backend também
@@ -58,5 +65,24 @@ export class CadastrarNovoProfessorComponent implements OnInit {
 
   toggleSenhaVisivel() {
     this.senhaVisivel = !this.senhaVisivel;
+  }
+  onSubmit() {
+    this.softwareService.createSoftware(this.software).subscribe(
+      (response) => {
+        console.log('Software cadastrado com sucesso!', response);
+        alert('Software cadastrado com sucesso!');
+        // Limpar o formulário
+        this.software = {
+          nome: '',
+          versao: '',
+          link: '',
+          softwareLivre: false,
+        };
+      },
+      (error) => {
+        console.error('Erro ao cadastrar software:', error);
+        alert('Erro ao cadastrar software!');
+      }
+    );
   }
 }

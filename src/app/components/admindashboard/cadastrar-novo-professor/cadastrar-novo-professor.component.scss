@@ -16,12 +16,21 @@ h1 {
   text-align: center;
 }
 
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
 form {
   background: #ffffffcc;
   padding: 2rem;
   border-radius: 16px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(8px);
+  margin-bottom: 2rem;
 }
 
 label {
@@ -68,6 +77,31 @@ button {
   }
 }
 
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.relative {
+  position: relative;
+}
+
+button[type='button'] {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+}
+
+.text-danger {
+  color: red;
+  font-size: 0.875rem;
+}
+
 @keyframes gradientAnimation {
   0% {
     background-position: 0% 50%;
@@ -85,7 +119,20 @@ button {
     padding: 1.5rem;
   }
 
-  h1 {
-    font-size: 2rem;
+  h1,
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
   }
 }
