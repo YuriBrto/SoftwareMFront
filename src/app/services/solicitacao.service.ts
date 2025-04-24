@@ -1,33 +1,42 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { SolicitacaoDTO, Solicitation } from '../models/solicitacao.model';
+import { SolicitacaoDTO, Solicitacao } from '../models/solicitacao.model';
 
 @Injectable({ providedIn: 'root' })
 export class SolicitacaoService {
-  private apiUrl = 'http://localhost:8081/api/solicitacoes';
+  private apiUrl = 'http://localhost:8081/api/solicitacao';
 
   constructor(private http: HttpClient) {}
 
-  createSolicitation(dto: SolicitacaoDTO): Observable<Solicitation> {
-    // Aqui mapeamos o DTO para o modelo completo
-    const solicitation: Solicitation = {
-      professorName: dto.professorName,
-      softwareName: dto.softwareName,
-      statusInstalacao: dto.statusInstalacao,
-      labId: dto.labId,
-      softwaresIds: dto.softwaresIds
-    };
-
-    return this.http.post<Solicitation>(this.apiUrl, solicitation);
+  createSolicitation(dto: SolicitacaoDTO): Observable<Solicitacao> {
+    const token = localStorage.getItem('token'); // Ou o mecanismo que você utiliza para armazenar o token
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    
+    return this.http.post<Solicitacao>(this.apiUrl, dto);
   }
 
-  getSolicitations(): Observable<Solicitation[]> {
-    return this.http.get<Solicitation[]>(this.apiUrl);
+  getSolicitacoes(): Observable<Solicitacao[]> {
+    return this.http.get<Solicitacao[]>(this.apiUrl);
   }
 
-  updateSolicitationStatus(id: number, status: string): Observable<Solicitation> {
-    return this.http.put<Solicitation>(`${this.apiUrl}/${id}?status=${status}`, {});
+  // Método para obter as solicitações (admin)
+  getSolicitacoesAdmin(): Observable<Solicitacao[]> {
+    return this.http.get<Solicitacao[]>(`${this.apiUrl}/admin`);  // Ajuste para a URL de admin
   }
-  
+
+  // Aprovar solicitação
+  aprovarSolicitacao(id: number): Observable<Solicitacao> {
+    return this.http.post<Solicitacao>(`${this.apiUrl}/aprovarsolicitacao/${id}`, {});
+  }
+
+  // Confirmar o uso do software
+  confirmarUso(id: number): Observable<Solicitacao> {
+    return this.http.put<Solicitacao>(`${this.apiUrl}/${id}/confirmar-uso`, {});
+  }
+
+  // Atualizar o status de instalação
+  updateSolicitationStatus(id: number, status: string): Observable<Solicitacao> {
+    return this.http.put<Solicitacao>(`${this.apiUrl}/${id}/status`, { statusInstalacao: status });
+  }
 }

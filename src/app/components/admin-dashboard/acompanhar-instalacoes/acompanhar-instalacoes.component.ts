@@ -3,7 +3,6 @@ import { SolicitacaoService } from '../../../services/solicitacao.service';
 import { Solicitacao } from '../../../models/solicitacao.model';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Solicitation } from '../../../models/solicitacao.model';
 
 @Component({
   selector: 'app-acompanhar-instalacoes',
@@ -30,14 +29,17 @@ export class AcompanharInstalacaoComponent implements OnInit {
       error: (err) => console.error('Erro ao buscar solicitações:', err)
     });
   }
-  
+
   // Atualizar o status da solicitação
   atualizarStatus(solicitacao: Solicitacao): void {
-    // Aqui o status pode ser "Em andamento", "Concluído", "Pendente", etc.
-    this.solicitacaoService.updateSolicitationStatus(solicitacao.id!, solicitacao.status).subscribe((res) => {
-      console.log('Status atualizado:', res);
-      // Após a atualização, recarrega as solicitações
-      this.loadSolicitacoes();
+    // Aqui o status pode ser "INICIADA", "EM_ANDAMENTO", "FINALIZADA", etc.
+    this.solicitacaoService.updateSolicitationStatus(solicitacao.id!, solicitacao.statusInstalacao).subscribe({
+      next: (res) => {
+        console.log('Status atualizado:', res);
+        // Após a atualização, recarrega as solicitações
+        this.loadSolicitacoes();
+      },
+      error: (err) => console.error('Erro ao atualizar status:', err)
     });
   }
 }

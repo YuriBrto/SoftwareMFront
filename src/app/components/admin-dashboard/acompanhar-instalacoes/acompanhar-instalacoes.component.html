@@ -12,22 +12,25 @@
   </thead>
   <tbody>
     <tr *ngFor="let solicitacao of solicitacoes">
-      <td>{{ solicitacao.professorName }}</td>
-      <td>{{ solicitacao.labName }}</td>
+      <td>{{ solicitacao.professor.nome }}</td>
+      <td>{{ solicitacao.lab.nome }}</td>
       <td>
         <ul>
-          <li *ngFor="let software of solicitacao.softwares">{{ software.name }}</li>
+          <li *ngFor="let software of solicitacao.softwaresSolicitados">{{ software.nome }}</li>
         </ul>
       </td>
       <td>
-        <select [(ngModel)]="solicitacao.status">
-          <option value="Pendente">Pendente</option>
-          <option value="Em andamento">Em andamento</option>
-          <option value="Concluído">Concluído</option>
+        <select [(ngModel)]="solicitacao.statusInstalacao">
+          <option value="PENDENTE">Pendente</option>
+          <option value="INICIADA">Iniciada</option>
+          <option value="EM_ANDAMENTO">Em andamento</option>
+          <option value="FINALIZADA">Finalizada</option>
         </select>
       </td>
       <td>
-        <button (click)="atualizarStatus(solicitacao)">Atualizar Status</button>
+        <button (click)="atualizarStatus(solicitacao)">
+          Atualizar Status
+        </button>
       </td>
     </tr>
   </tbody>

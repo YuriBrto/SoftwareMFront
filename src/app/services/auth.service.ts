@@ -12,7 +12,7 @@ export interface LoginResponse {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private apiUrl = 'http://localhost:8081'; // Ajuste conforme necessário
-  
+
   constructor(private http: HttpClient) {}
 
   login(credentials: { username: string; password: string }): Observable<LoginResponse> {
@@ -53,7 +53,7 @@ export class AuthService {
   // Método para obter o ID do usuário a partir do token JWT
   getUserId(): number | null {
     const decodedToken = this.decodeToken();
-    return decodedToken ? decodedToken.sub === 'professor' ? 1 : null : null;
+    return decodedToken ? decodedToken.id : null; // Extraindo o 'id' do payload
   }
 
   // Método de logout, limpando o localStorage

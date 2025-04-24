@@ -2,7 +2,8 @@
 
 <form (ngSubmit)="onSubmit()" class="grid gap-4 max-w-md mx-auto">
   <label for="lab">Selecione um laboratório:</label>
-  <select id="lab" [(ngModel)]="selectedLabId" name="lab">
+  <select id="lab" [(ngModel)]="selectedLabId" name="lab" required>
+    <option value="" disabled selected>Selecione um laboratório</option>
     <option *ngFor="let lab of labs" [value]="lab.id">{{ lab.nome }}</option>
   </select>
 
@@ -20,9 +21,8 @@
   </div>
 
   <div>
-    <h3>Solicitar Software</h3>
-    <input [(ngModel)]="solicitation.professorName" placeholder="Nome do Professor" />
-    <input [(ngModel)]="solicitation.softwareName" placeholder="Nome do Software" />
-    <button type="submit">Enviar Solicitação</button>
+    <button type="submit" [disabled]="!isFormValid">
+      Enviar Solicitação
+    </button>
   </div>
 </form>
