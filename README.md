@@ -1,43 +1,80 @@
-<<<<<<< HEAD
+🔐 Sistema de Intalação com Angular e Java
+Este repositório contém o desenvolvimento full-stack de um sistema de instalação de softwares robusto e escalável, criado para a disciplina de Arquitetura de Software. O frontend foi desenvolvido com Angular standalone, TypeScript e SCSS, enquanto o backend inicialmente utilizava Spring Boot com REST, atualmente em processo de migração para uma arquitetura de microserviços com SOAP, conforme nova diretriz acadêmica.
 
---EM DESENVOLVIMENTO--
+📌 Visão Geral
+O sistema foi idealizado para atender dois perfis de usuários:
 
-Login Java - Uma Autenticação Confiável e Elegante
-Este repositório abriga o desenvolvimento full-stack de um sistema de login robusto e intuitivo, utilizando a linguagem Java para o backend e o framework Angular com pré-processamento SCSS para o frontend.
+Professores, que podem solicitar a instalação de softwares em laboratórios.
 
-Visão Geral
-O projeto "Login Java" visa fornecer uma solução completa para a autenticação de usuários, com foco em:
+Administradores, responsáveis por gerenciar usuários e softwares disponíveis.
 
-Segurança: Implementação de mecanismos de autenticação robustos para proteger os dados dos usuários.
-Usabilidade: Interface amigável e responsiva, projetada para uma experiência de usuário agradável.
-Escalabilidade: Arquitetura modular e flexível, permitindo a expansão e adaptação a diferentes necessidades.
-Estrutura do Projeto
-O repositório está organizado em duas partes principais:
+A solução visa:
 
-Backend (Java):
-API REST: Fornece endpoints para gerenciar usuários, autenticação e outras funcionalidades.
-Banco de Dados: Armazena informações de usuários e configurações do sistema.
-Frontend (Angular):
-Componentes: Cria a interface do usuário, incluindo formulários de login, registro e recuperação de senha.
-Estilos (SCSS): Define a aparência visual do sistema, garantindo uma experiência consistente e atraente.
-Tecnologias Utilizadas
-Backend:
+✅ Segurança: Autenticação com JWT, controle de sessão e rotas protegidas com guards.
+
+✅ Modularidade: Componentes reutilizáveis e organização parent-child.
+
+✅ Usabilidade: Interface responsiva e acessível, pensada no público-alvo.
+
+✅ Escalabilidade: Código estruturado para facilitar evolução futura.
+
+✅ Boas práticas: Uso de interceptors para envio automático do token e tratamento centralizado de erros.
+
+🚀 Funcionalidades do Frontend
+🔑 Tela de login estruturada com componentes aninhados.
+
+🔐 Autenticação com JWT e proteção de rotas com guards.
+
+🧩 Componentes reutilizáveis para:
+
+Listagem de dados
+
+Formulários
+
+Feedback de ações via toasts
+
+🧑‍🏫 Painel do professor com solicitação de softwares por laboratório.
+
+🛠️ Painel do administrador para gestão de usuários e softwares.
+
+⚙️ Interceptor HTTP para envio de token e captura centralizada de erros.
+
+📱 Layout responsivo com foco em acessibilidade e experiência de uso.
+
+🐞 Problemas Resolvidos
+Durante o desenvolvimento, foi identificado um problema em que o token JWT era recebido como undefined, o que impedia a associação correta entre solicitações e o usuário logado. Isso foi resolvido por meio da revisão do fluxo de autenticação e do envio de headers HTTP.
+
+🧱 Estrutura do Projeto
+bash
+Copiar
+Editar
+/backend      -> API em Java (Spring Boot) - em refatoração para microserviços SOAP
+/frontend     -> Aplicação Angular standalone com SCSS
+🛠️ Tecnologias Utilizadas
+Backend
 Java
+
 Spring Boot
+
 Spring Security
-Banco de Dados 
-Frontend:
-Angular
-SCSS
+
+Banco de Dados relacional (ex: PostgreSQL)
+
+Frontend
+Angular (standalone)
+
 TypeScript
+
+SCSS
+
 RxJS
-=======
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/xIxO_Uqu)
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=18569963&assignment_repo_type=AssignmentRepo)
-# Desenvolvimento Front End
 
-## Turma 01 - Noturno - Engenharia de Software
+📚 Informações Acadêmicas
+Curso: Engenharia de Software
+Turma: 01 - Noturno
+Disciplina: Arquitetura de Software
+Tecnologia escolhida: Angular (https://angular.dev/)
 
-É permitido usar: Angular (https://angular.dev/), React (https://react.dev/), Vue (https://vuejs.org/), Flutter (https://flutter.dev/), HTML+CSS+JS.
-Necessário a identificação da tecnologia utilizada na entrega do formulário com o link desse projeto
->>>>>>> dfb49156d8c9910b3113141ddc63cf411614c039
+📎 Em Desenvolvimento
+A migração para microserviços e a integração completa entre backend e frontend seguem em andamento, com foco em aprimorar a escalabilidade e modularidade da solução.
+
